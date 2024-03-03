@@ -31,7 +31,54 @@ Vamos a trabajar con la base de datos northwind que es una base de datos relacio
 
 Documentación de base de datos Northwind:
 
-* https://en.wikiversity.org/wiki/Database_Examples/Northwind/SQLite
+* https://en.wikiversity.org/wiki/Database_Examples/Northwind/MySQL
+
+Lo primero que tenemos que hacer es crear el archivo de docker-compose.yaml para poder
+correr la imagen ¿Por qué lo hacemos a través de docker-compose? Dado que es una buena
+práctica y puede ser medio engorroso cuando necesitamos definir variables de entorno, volumenes, puertos, etc.
+
+Lo primero que hacemos una vez seteado el archivo de docker compose es ejecutarlo para levantar el contenedor. En caso que no hayamos hecho el pull, esto lo va a hacer por nosotros también.
+
+```docker
+docker-compose up -d
+```
+
+Algo útil para esto es chequear la IP donde esta levantado el contenedor
+
+```docker
+docker inspect mysql
+```
+
+Luego lo que vamos a hacer es entrar al contenedor
+
+```docker
+docker exec -it mysql bash
+```
+
+Una vez dentro del contenedor, tenemos que acceder a nuestra base de datos. Para esto fue necesario realizar el docker inspect
+
+```docker
+mysql -h 172.18.0.2 -u root -p
+```
+
+En caso de cualquier falla acá hay un video que nos explica como realizarlo:
+
+* https://www.youtube.com/watch?v=XMPYAouPLvo
+
+
+Una vez que tenemos mysql dentro del contenedor tenemos que proceder a crear la base de datos northwind. Para eso vamos a copiar el script de la base de datos dentro del contenedor
+
+```docker
+docker cp ./northwind.sql mysql:/northwind.sql
+```
+
+Una vez dentro de mysql lo que tenemos que hacer es ejecutar el código que copiamos dentro del contenedor:
+
+```sql
+source ./northwind.sql
+```
+
+Una vez que el proceso finaliza correctamente tenemos que realizar la conexión con DBeaver para poder realizar las consultas de forma fácil para poder proseguir con el curso.
 
 
 #### Como se empieza a trabjar con SQL (Clase_101)
