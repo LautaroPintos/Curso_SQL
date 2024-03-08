@@ -25,7 +25,7 @@ Glosario auxiliar:
 Vamos a trabajar con la base de datos northwind que es una base de datos relacional que es altamente utilizada para realizar pruebas. Entonces que necesitamos instalar:
 
 * Docker
-* SQlite (contenedor de docker)
+* MySQL (contenedor de docker)
 * DBeaver
 * Base de datos: Northwind
 
