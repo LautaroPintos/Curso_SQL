@@ -61,6 +61,21 @@ create table usuarios (
     FOREIGN KEY (id_clientes) REFERENCES tabla_clientes (id_clientes)
 );
 
+-- ¿Cómo funcionan los indices?
+/* Basicamente sirven para optimizar el código de lectura pero pueden
+generar errores de escritura dependiendo de como hayamos definido los indices 
+dado que consumen mucho espacio en disco.
+Podemos tener indices únicos (como las primerys keys) y los indices ordinarios
+que se lo podemos asignar a cualquier campo
+
+En el ejemplo de abajo estamos creando un índice único compuesto. Pero esto nos
+va a obligar a no tener empleados con nombres repetidos. No podríamos tener en
+nuestra base de datos dos carlos gutierrez */
+create unique index  name on Employees (FirstName, LastName);
+
+-- ¿Cómo se eliminan?
+drop index name;
+
 
 
 
